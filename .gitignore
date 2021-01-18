@@ -1,0 +1,6 @@
+spell/
+lua/
+backup/
+autoload/
+after/
+.netrwhist
