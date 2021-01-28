@@ -7,6 +7,9 @@ Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'mfussenegger/nvim-jdtls'
 
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'mattn/vim-lsp-settings'
+
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'

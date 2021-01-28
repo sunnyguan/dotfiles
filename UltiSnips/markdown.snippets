@@ -127,16 +127,16 @@ endsnippet
 
 context "math()"
 snippet // "Fraction" iA
-\\frac{$1}{$2}$0
+\\dfrac{$1}{$2}$0
 endsnippet
 
 snippet / "Fraction" i
-\\frac{${VISUAL}}{$1}$0
+\\dfrac{${VISUAL}}{$1}$0
 endsnippet
 
 context "math()"
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
-\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+\\dfrac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
 priority 1000
@@ -151,7 +151,7 @@ while True:
 	if stripped[i] == '(': depth -= 1
 	if depth == 0: break;
 	i-=1
-snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+snip.rv = stripped[0:i] + "\\dfrac{" + stripped[i+1:-1] + "}"
 `{$1}$0
 endsnippet
 
@@ -427,7 +427,7 @@ snippet xx "cross" iA
 endsnippet
 
 priority 100
-snippet ** "cdot" iA
+snippet ** "cdot" i
 \cdot 
 endsnippet
 

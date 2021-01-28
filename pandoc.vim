@@ -26,7 +26,7 @@ function! EnablePandocLive()
     let b:pdf_filename = split(getcwd(), "/")[-1] . '.pdf'
     augroup PandocLive
         autocmd! * <buffer>
-        autocmd BufWritePost <buffer> silent call s:LiveCompile('pandoc -f markdown *.md -o ' . b:pdf_filename . ' --template eisvogel --metadata-file ~/Desktop/markdown/configs/meta.yaml --filter pandoc-latex-environment --listings')
+        autocmd BufWritePost <buffer> silent call s:LiveCompile('pandoc -f markdown *.md -o ' . b:pdf_filename . ' --template eisvogel --metadata-file ~/Desktop/markdown/2021_Spring/configs/meta.yaml --filter pandoc-latex-environment --listings')
     augroup END
 
     command -buffer PandocLiveDisable call s:DisablePandocLive()
@@ -37,7 +37,7 @@ function! EnablePandocLivePart()
     let b:pdf_filename = split(getcwd(), "/")[-1] . '_part.pdf'
     augroup PandocLivePart
         autocmd! * <buffer>
-        autocmd BufWritePost <buffer> silent call s:LiveCompile('pandoc -f markdown ' . fnameescape(@%) . ' 0*.md -o ' . b:pdf_filename . ' --template eisvogel --metadata-file ~/Desktop/markdown/configs/meta.yaml --metadata titlepage=false --filter pandoc-latex-environment --listings')
+        autocmd BufWritePost <buffer> silent call s:LiveCompile('pandoc -f markdown ' . fnameescape(@%) . ' 0*.md -o ' . b:pdf_filename . ' --template eisvogel --metadata-file ~/Desktop/markdown/2021_Spring/configs/meta.yaml --metadata titlepage=false --filter pandoc-latex-environment --listings')
     augroup END
 
     command -buffer PandocLiveDisable call s:DisablePandocLive()

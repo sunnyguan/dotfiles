@@ -14,13 +14,17 @@ let g:diagnostic_virtual_text_prefix = ''
 let g:diagnostic_enable_virtual_text = 1
 
 imap <silent> <c-p> <Plug>(completion_trigger)
+" let g:UltiSnipsExpandTrigger = "<tab>"
+
 set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_smart_case = 1
 let g:completion_trigger_on_delete = 1
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:completion_confirm_key = ""
+inoremap <expr> <cr>    pumvisible() ? "\<Plug>(completion_confirm_completion)" : "\<cr>"
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 set updatetime=300
@@ -48,6 +52,7 @@ autocmd BufWritePre *.java undojoin | Format
   end
   nvim_lsp.tsserver.setup{ on_attach=require'completion'.on_attach }
   nvim_lsp.pyls.setup{ on_attach=require'completion'.on_attach }
+  nvim_lsp.clangd.setup{ on_attach=require'completion'.on_attach }
 EOF
 
 "   nvim_lsp.jdtls.setup{ on_attach=require'completion'.on_attach, cmd= {"./Users/test/.local/share/vim-lsp-settings/servers/eclipse-jdt-ls/eclipse-jdt-ls"} }
@@ -58,7 +63,6 @@ if has('nvim-0.5')
     au FileType java lua require('jdtls').start_or_attach({cmd = {'start-jdtls.sh'}, on_attach=require('completion').on_attach})
   augroup end
 endif
-
 
 :lua << EOF
   require'nvim-treesitter.configs'.setup {
