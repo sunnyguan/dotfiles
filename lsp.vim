@@ -32,7 +32,7 @@ set updatetime=300
 set shortmess+=c
 
 command! Format execute 'lua vim.lsp.buf.formatting()'
-autocmd BufWritePre *.java undojoin | Format
+" autocmd BufWritePre *.java undojoin | Format
 
 :lua << EOF
   local nvim_lsp = require('lspconfig')

@@ -33,16 +33,28 @@ function! EnablePandocLive()
     delcommand PandocLiveEnable
 endfunction
 
-function! EnablePandocLivePart()
-    let b:pdf_filename = split(getcwd(), "/")[-1] . '_part.pdf'
-    augroup PandocLivePart
-        autocmd! * <buffer>
-        autocmd BufWritePost <buffer> silent call s:LiveCompile('pandoc -f markdown ' . fnameescape(@%) . ' 0*.md -o ' . b:pdf_filename . ' --template eisvogel --metadata-file ~/Desktop/markdown/2021_Spring/configs/meta.yaml --metadata titlepage=false --filter pandoc-latex-environment --listings')
-    augroup END
+" function! EnablePandocLivePart()
+"     let b:pdf_filename = split(getcwd(), "/")[-1] . '_part.pdf'
+"     augroup PandocLivePart
+"         autocmd! * <buffer>
+"         autocmd BufWritePost <buffer> silent call s:LiveCompile('pandoc -f markdown ' . fnameescape(@%) . ' 0*.md -o ' . b:pdf_filename . ' --template eisvogel --metadata-file ~/Desktop/markdown/2021_Spring/configs/meta.yaml --metadata titlepage=false --filter pandoc-latex-environment --listings')
+"     augroup END
+" 
+"     command -buffer PandocLiveDisable call s:DisablePandocLive()
+"     delcommand PandocLiveEnable
+" endfunction
 
-    command -buffer PandocLiveDisable call s:DisablePandocLive()
-    delcommand PandocLiveEnable
+function! EnablePandocLivePart()
+	let b:pdf_filename = split(@%, '\.')[0].'.pdf'
+	augroup PandocLivePart
+		autocmd! * <buffer>
+		autocmd BufWritePost <buffer> silent call s:LiveCompile('pandoc -f markdown '.@%.' -o ' . b:pdf_filename . ' --template eisvogel --metadata-file ~/Desktop/markdown/2021_Spring/configs/meta.yaml --metadata titlepage=false --filter pandoc-latex-environment --listings')
+	augroup END
+
+	command -buffer PandocLiveDisable call s:DisablePandocLive()
+	delcommand PandocLiveEnable
 endfunction
+
 
 
 function! s:DisablePandocLive()
