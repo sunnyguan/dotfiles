@@ -4,9 +4,13 @@ This is my current setup for taking notes with Markdown as well as doing competi
 
 ## Markdown
 
+![notes](notes.png)
+
 Main plugin used is [Markdown Preview](https://github.com/iamcco/markdown-preview.nvim), which is a lot easier to setup and work with compared to doing my own Pandoc setup. I edited the default styles a bit to make the preview full-width without the surrounding box/header. Those files can be found in the `md-styles/` directory.
 
 ## Programming
+
+![code](code.png)
 
 Requires [Neovim nightly](https://github.com/neovim/neovim/releases/tag/nightly) for the built-in LSP support. Most settings are standard, only a few tweaks to get Java and Ultisnips working.
 
